@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Tuple, Union
+from typing import Tuple
 
 
 def parse_date(date_string: str, format_str: str = "%Y-%m-%d") -> datetime:
@@ -7,7 +7,7 @@ def parse_date(date_string: str, format_str: str = "%Y-%m-%d") -> datetime:
     return datetime.strptime(date_string, format_str)
 
 
-def calculate_date_range(period: str) -> Union[Tuple[datetime, datetime], None]:
+def calculate_date_range(period: str) -> Tuple[datetime, datetime]:
     """Calculate the date range (start and end dates) based on the specified period."""
     today = datetime.today()
     if period == "day":
