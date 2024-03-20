@@ -5,7 +5,7 @@ from utils.date_utils import parse_date, calculate_date_range
 
 
 class Account:
-    def __init__(self, name: str, total_money: float = 0):
+    def __init__(self, name: str, total_money: int = 0):
         self.name = name
         self.total_money = total_money
         self.transactions: List[Transaction] = []
@@ -49,7 +49,7 @@ class Account:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 date = row["Date"]
-                amount = float(row["Amount"])
+                amount = int(row["Amount"])
                 category = row["Category"]
                 transaction = Transaction(date, amount, category)
                 account.add_transaction(transaction)

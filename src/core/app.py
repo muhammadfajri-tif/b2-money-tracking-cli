@@ -9,13 +9,14 @@ class App:
     def add_money(self):
         account_name = input("Enter account name: ")
         date = input("Enter date (YYYY-MM-DD): ")
-        amount = float(input("Enter amount: "))
+        amount = int(input("Enter amount: "))
         category = input("Enter category: ")
+        desc = input("Enter desc: ")
 
         if account_name not in self.accounts:
             self.accounts[account_name] = Account(account_name)
 
-        transaction = Transaction(date, amount, category)
+        transaction = Transaction(date, amount, category, desc)
         self.accounts[account_name].add_transaction(transaction)
         print("Money added successfully.")
 
