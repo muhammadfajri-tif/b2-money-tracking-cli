@@ -1,14 +1,14 @@
 from core.app import App
-from storage.initialization import create_initial_account
+# from storage.initialization import create_initial_account
 
 
 def main():
     # Create initial account if no account is imported
     app = App()
-    if not app.accounts:
-        demo_account = create_initial_account()
-        app.accounts[demo_account.name] = demo_account
-        print("Initial account created with sample transactions.")
+    # if not app.account:
+    #     demo_account = create_initial_account()
+    #     app.account = demo_account
+    #     print("Initial account created with sample transactions.")
 
     # Main loop of the application
     while True:
