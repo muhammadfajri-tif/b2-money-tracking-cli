@@ -25,6 +25,18 @@ class Account(UserData):
             self._total_money -= transaction.amount
         # append to the file
 
+    def update_transaction(self, idx_transaction: int, new_transaction: Transaction) -> Transaction:
+        """Method for update/replace exisiting transaction using its index with new transaction"""
+        exist_transaction = self._transactions[idx_transaction]
+        self._transactions = list(map(lambda transaction: new_transaction if transaction == exist_transaction else transaction, self._transactions))
+        return new_transaction
+
+    def delete_transaction(self, idx_transaction: int) -> Transaction:
+        """Method for delete existing transaction using its index"""
+        deleted_transaction = self._transactions[idx_transaction]
+        self._transactions.remove(deleted_transaction)
+        return deleted_transaction
+
     def get_transactions_for_period(self, period: str) -> List[Transaction]:
         start_date, end_date = calculate_date_range(period)
         filtered_transactions = []
@@ -32,8 +44,15 @@ class Account(UserData):
             transaction_date = parse_date(transaction.date)
             if start_date <= transaction_date <= end_date:
                 filtered_transactions.append(transaction)
-
         return filtered_transactions
+
+    def get_income_list(self) -> List[Transaction]:
+        """Method for get income list"""
+        return list(filter(lambda transaction: transaction.type == TransactionType.INCOME, self._transactions))
+
+    def get_spending_list(self) -> List[Transaction]:
+        """Method for get spending list"""
+        return list(filter(lambda transaction: transaction.type == TransactionType.SPENDING, self._transactions))
 
     def export_account(self, filename: str):
         if not filename.endswith(".csv"):
