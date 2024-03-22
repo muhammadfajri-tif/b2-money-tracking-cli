@@ -1,11 +1,4 @@
-Date,Amount,Category
-2024-03-25,50.0,Groceries
-2024-03-20,20.0,Dining Out
-2024-03-25,30.0,Transportation
-2024-03-20,40.0,Entertainment
-2024-03-25,25.0,Utilities
-2024-03-23,1000.0,Salary
-2024-03-22,200.0,Freelancing
-2024-03-28,300.0,Bonus
-2024-03-22,400.0,Investment
-2024-03-28,500.0,Gift
+name,money,type,date,amount,category,desc
+foo,50000,,,,,
+,,spending,2024-03-23,10000,food,eat
+,,income,2024-03-23,3000,grants,cashback
