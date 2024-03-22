@@ -15,7 +15,7 @@ class Transaction:
     @staticmethod
     def validate_transaction_type(type: TransactionType) -> bool:
         """Method for validate transaction type from user input"""
-        return hasattr(TransactionType, type)
+        return type in TransactionType
 
     def __repr__(self) -> str:
         """To String method"""
