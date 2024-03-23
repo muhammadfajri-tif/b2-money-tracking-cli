@@ -14,6 +14,15 @@ class TestDateFunctions(unittest.TestCase):
         expected_date = datetime(2022, 3, 1)
         self.assertEqual(parse_date(date_string), expected_date)
 
+    def test_parse_date_wil_be_FAILED(self):
+        # Test parsing a date string
+        date_string = "2022-03-01"
+        expected_date = datetime(2022, 3, 2)  # Intentionally incorrect expected date
+        parsed_date = parse_date(date_string)
+        assert (
+            parsed_date == expected_date
+        ), f"Parsed date ({parsed_date}) is not equal to expected date ({expected_date})"
+
     def test_calculate_date_range_day(self):
         # Test calculating date range for 'day' period
         today = datetime.today()
