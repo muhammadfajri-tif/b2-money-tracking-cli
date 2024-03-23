@@ -2,7 +2,6 @@ from .account import Account
 from storage.user_data import UserData
 from .transaction import Transaction, TransactionType
 
-
 class App:
     # constructor
     def __init__(self):
@@ -81,3 +80,19 @@ class App:
             print("[INFO] Account imported successfully.")
         else:
             print("[ERRO] Failed to load existing data.")
+            
+    def export_money_by_period(self):
+        period = input("Enter period (day/week/month/year): ")
+
+        filtered_transactions = self.account.get_transactions_for_period(period)
+
+        if filtered_transactions:
+            format_choice = input("Export as CSV or JSON (c/j)? ").lower()
+            if format_choice == "c":
+                UserData.export_to_csv(filtered_transactions, period)
+            elif format_choice == "j":
+                UserData.export_to_json(filtered_transactions, period)
+            else:
+                print("Invalid choice. Please choose 'c' for CSV or 'j' for JSON.")
+        else:
+            print("No transactions found for the selected period.")

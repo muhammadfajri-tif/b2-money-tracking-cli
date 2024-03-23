@@ -1,23 +1,18 @@
 from core.app import App
-# from storage.initialization import create_initial_account
 
 
 def main():
-    # Create initial account if no account is imported
     app = App()
-    # if not app.account:
-    #     demo_account = create_initial_account()
-    #     app.account = demo_account
-    #     print("Initial account created with sample transactions.")
 
     # Main loop of the application
     while True:
         print("\nMoney Tracking App")
         print("1. Add Money")
         print("2. Read All Money")
-        print("3. Export Account")
-        print("4. Import Account")
-        print("5. Exit")
+        print("3. Export Money")
+        print("4. Export Account")
+        print("5. Import Account")
+        print("6. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -27,12 +22,15 @@ def main():
             app.read_all_money()
 
         elif choice == "3":
-            app.export_account()
+            app.export_money_by_period()
 
         elif choice == "4":
-            app.import_account()
+            app.export_account()
 
         elif choice == "5":
+            app.import_account()
+
+        elif choice == "6":
             print("Exiting...")
             break
 

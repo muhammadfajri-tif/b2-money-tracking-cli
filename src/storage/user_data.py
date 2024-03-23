@@ -1,5 +1,7 @@
 import os
 import csv
+import datetime
+import json
 from core.transaction import Transaction, TransactionType
 
 
@@ -147,3 +149,46 @@ class UserData:
             return {"name": name, "money": total_money, "transactions": transactions}
         except IOError:
             print("[ERRO] Failed to import data.")
+
+    @staticmethod
+    def export_to_csv(transactions, period):
+        data_folder = "data"
+        if not os.path.exists(data_folder):
+            os.makedirs(data_folder)
+
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        filename = f"money_{period}_{current_date}_export.csv"
+        file_path = os.path.join(data_folder, filename)
+        
+        with open(file_path, 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=["Type", "Date", "Amount", "Category", "Description"])
+            writer.writeheader()
+            for transaction in transactions:
+                writer.writerow({
+                    "Type": str(transaction.type),
+                    "Date": transaction.date,
+                    "Amount": transaction.amount,
+                    "Category": transaction.category,
+                    "Description": transaction.desc
+                })
+        print("Export successful. CSV file created:", filename)
+
+    @staticmethod
+    def export_to_json(transactions, period):
+        data_folder = "data"
+        if not os.path.exists(data_folder):
+            os.makedirs(data_folder)
+        
+        current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+        filename = f"money_{period}_{current_date}_export.json"
+        file_path = os.path.join(data_folder, filename)
+        
+        data = [{"Type": str(transaction.type),
+                "Date": transaction.date,
+                "Amount": transaction.amount,
+                "Category": transaction.category,
+                "Description": transaction.desc} for transaction in transactions]
+
+        with open(file_path, 'w') as file:
+            json.dump(data, file, indent=4)
+        print("Export successful. JSON file created:", filename)
