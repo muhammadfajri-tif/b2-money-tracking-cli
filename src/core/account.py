@@ -83,6 +83,10 @@ class Account:
     @staticmethod
     def export_account(account: "Account", filename: str = "backup_account.csv"):
         """Method for export account data to file"""
+        # if user didn't include extension
+        if not filename.endswith(".csv"):
+            filename += ".csv"
+
         dir = os.getcwd()
         file_path = os.path.join(dir, 'data', filename)
         try:
