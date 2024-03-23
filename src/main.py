@@ -1,9 +1,14 @@
 from storage.initialization import create_initial_account
+<<<<<<< Updated upstream
 from core.user_interface import MoneyTrackingUI
+=======
+from core.UI import MoneyTrackingUI
+>>>>>>> Stashed changes
 
 def main():
     # account_name = input("Enter account name: ")
     while True:
+<<<<<<< Updated upstream
         # Create initial account if no account is imported
         from core.app import App
         app = App()
@@ -11,6 +16,10 @@ def main():
             demo_account = create_initial_account()
             app.accounts[demo_account.name] = demo_account
             print("Initial account created with sample transactions.")
+=======
+        MoneyTrackingUI.print_money_tracking_ui_start_menu()
+        choice = input("Enter your choice: ")
+>>>>>>> Stashed changes
 
         account_name = input("Enter account name: ")
     

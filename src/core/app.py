@@ -1,15 +1,22 @@
 from .account import Account
+<<<<<<< Updated upstream
 from .transaction import Transaction
 from .user_interface import MoneyTrackingUI
 import sys
 sys.path.append("src/")
 from main import main
 import time
+=======
+from .transaction import Transaction, TransactionType
+from .UI import MoneyTrackingUI
+
+>>>>>>> Stashed changes
 
 class App:
     def __init__(self):
         self.accounts = {}
 
+<<<<<<< Updated upstream
 
     # fungsi add
     def menu_add_income(self, account_name):
@@ -17,6 +24,15 @@ class App:
         while True:
             MoneyTrackingUI.clear()
             MoneyTrackingUI.print_money_tracking_ui_menu_add()
+=======
+    def add_money(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
+        account_name = input("Enter account name: ")
+        date = input("Enter date (YYYY-MM-DD): ")
+
+        MoneyTrackingUI.print_money_tracking_ui_menu_addMoney()
+        type_input = int(input("Enter Transaction type: "))
+>>>>>>> Stashed changes
 
             choice = input("Enter your choice: ")
 
@@ -252,6 +268,7 @@ class App:
         return True
     
     def read_all_money(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         account_name = input("Enter account name: ")
         period = input("Enter period (day/week/month/year): ")
 
@@ -268,6 +285,7 @@ class App:
             print("Account not found.")
 
     def export_account(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         account_name = input("Enter account name: ")
         filename = input("Enter filename to export: ")
 
@@ -278,6 +296,7 @@ class App:
             print("Account not found.")
 
     def import_account(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         filename = input("Enter filename to import: ")
         account_name = input("Enter account name: ")
 
