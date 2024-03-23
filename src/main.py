@@ -1,44 +1,44 @@
-from core.app import App
 from storage.initialization import create_initial_account
-
+from core.user_interface import MoneyTrackingUI
 
 def main():
-    # Create initial account if no account is imported
-    app = App()
-    if not app.accounts:
-        demo_account = create_initial_account()
-        app.accounts[demo_account.name] = demo_account
-        print("Initial account created with sample transactions.")
-
-    # Main loop of the application
+    # account_name = input("Enter account name: ")
     while True:
-        print("\nMoney Tracking App")
-        print("1. Add Money")
-        print("2. Read All Money")
-        print("3. Export Account")
-        print("4. Import Account")
-        print("5. Exit")
-        choice = input("Enter your choice: ")
+        # Create initial account if no account is imported
+        from core.app import App
+        app = App()
+        if not app.accounts:
+            demo_account = create_initial_account()
+            app.accounts[demo_account.name] = demo_account
+            print("Initial account created with sample transactions.")
 
-        if choice == "1":
-            app.add_money()
+        account_name = input("Enter account name: ")
+    
+        MoneyTrackingUI.print_money_tracking_ui_start_menu()
 
-        elif choice == "2":
+        # Mendapatkan input dari pengguna
+
+        selected_option = input("Enter adayour choice: ")
+
+        # Melakukan sesuatu berdasarkan opsi yang dipilih
+        if selected_option.isdigit():
+            selected_option = int(selected_option)
+        if selected_option == 1:
+            app.menu_add_income(account_name)
+        elif selected_option == 2:
+            app.menu_add_spending(account_name)
+        elif selected_option == 3:
             app.read_all_money()
-
-        elif choice == "3":
+        elif selected_option == 4:
             app.export_account()
-
-        elif choice == "4":
+        elif selected_option == 5:
             app.import_account()
-
-        elif choice == "5":
-            print("Exiting...")
-            break
-
+        elif selected_option == 0:
+            return 0
         else:
-            print("Invalid choice. Please enter a valid option.")
-
+            print("Invalid option")
 
 if __name__ == "__main__":
     main()
+    
+
