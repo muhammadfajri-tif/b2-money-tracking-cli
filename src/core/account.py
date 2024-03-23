@@ -12,20 +12,6 @@ class Account:
     _transactions: List[Transaction] = []
 
     def __init__(self, name: str, total_money: int = 0):
-        # # TOOO: validate username, if exist load, if not create new
-        # if UserData.validate_account_data():
-        #     # if username is same with account file, then sync data transaction
-        #     if self._name == name:
-        #         loaded = self.import_account("account.csv")
-        #         self._name = loaded._name
-        #         self._total_money = loaded._total_money
-        #         # sort by date
-        #         self._transactions = sorted(loaded._transactions, key=lambda trx: trx.date)
-        #         print("[INFO] Successfully sync data to the file.")
-        #     else:
-        #         # overwrite it?
-        #         print("[ERRO] Data from file not match with existing account")
-        # else: 
         # creating new account
         self._name = name
         self._total_money = total_money
@@ -96,24 +82,6 @@ class Account:
         except Exception:
             print("[ERRO] Failed to delete transaction. Index out of range or data not found!")
         return deleted_transaction
-
-
-    # def export_account(self, filename: str):
-    #     if not filename.endswith(".csv"):
-    #         filename += ".csv"
-
-    #     with open(filename, "w", newline="") as csvfile:
-    #         fieldnames = ["Date", "Amount", "Category"]
-    #         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    #         writer.writeheader()
-    #         for transaction in self._transactions:
-    #             writer.writerow(
-    #                 {
-    #                     "Date": transaction.date,
-    #                     "Amount": transaction.amount,
-    #                     "Category": transaction.category,
-    #                 }
-    #             )
 
 
     @staticmethod
