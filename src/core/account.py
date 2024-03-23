@@ -46,8 +46,7 @@ class Account:
         # add new transaction to the list
         self._transactions.append(transaction)
         # mutate field money
-        transaction.amount = int(transaction.amount)
-        self._total_money += int(transaction.amount) if transaction.type == "income" else int(-transaction.amount)
+        self._total_money = int(self._total_money) + int(transaction.amount) if transaction.type == "income" else -int(transaction.amount)
         #sort by date
         self._transactions = sorted(self._transactions, key=lambda trx: trx.date)
         # append to the file
