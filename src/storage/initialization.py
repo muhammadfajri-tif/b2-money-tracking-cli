@@ -1,5 +1,5 @@
 from core.account import Account
-from core.transaction import Transaction
+from core.transaction import Transaction, TransactionType
 
 
 def create_initial_account():
@@ -7,20 +7,20 @@ def create_initial_account():
 
     # Sample spending transactions
     spending_transactions = [
-        Transaction("2024-03-25", 50.0, "Groceries"),
-        Transaction("2024-03-20", 20.0, "Dining Out"),
-        Transaction("2024-03-25", 30.0, "Transportation"),
-        Transaction("2024-03-20", 40.0, "Entertainment"),
-        Transaction("2024-03-25", 25.0, "Utilities"),
+        Transaction(TransactionType.SPENDING,"2024-03-25", 5000, "Groceries", "medicine"),
+        Transaction(TransactionType.SPENDING,"2024-03-20", 20000, "Dining Out", "nice food and coke"),
+        Transaction(TransactionType.SPENDING,"2024-03-25", 3000, "Transportation"),
+        Transaction(TransactionType.SPENDING,"2024-03-20", 40000, "Entertainment", "cinema"),
+        Transaction(TransactionType.SPENDING,"2024-03-25", 25000, "Utilities", "household"),
     ]
 
     # Sample income transactions
     income_transactions = [
-        Transaction("2024-03-23", 1000.0, "Salary"),
-        Transaction("2024-03-22", 200.0, "Freelancing"),
-        Transaction("2024-03-28", 300.0, "Bonus"),
-        Transaction("2024-03-22", 400.0, "Investment"),
-        Transaction("2024-03-28", 500.0, "Gift"),
+        Transaction(TransactionType.INCOME,"2024-03-23", 1_000_000, "Salary"),
+        Transaction(TransactionType.INCOME,"2024-03-22", 200_000, "Freelancing", "jobstreet"),
+        Transaction(TransactionType.INCOME,"2024-03-28", 100_000, "Bonus", "bonus from work"),
+        Transaction(TransactionType.INCOME,"2024-03-22", 40_000, "Investment", "stock liquidity"),
+        Transaction(TransactionType.INCOME,"2024-03-28", 5000, "Gift", "cashback"),
     ]
 
     # Add transactions to the account
