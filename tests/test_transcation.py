@@ -33,6 +33,16 @@ class TestTransaction(unittest.TestCase):
         expected_repr = "{\n\tType: income\n\tDate: 2024-03-22\n\tAmount: 100\n\tCategory: Salary\n\tDesc: Monthly income\n}\n"
         self.assertEqual(repr(transaction), expected_repr)
 
+    def test_repr_method_will_be_FAILED(self):
+        # Test __repr__ method
+        transaction = Transaction(
+            TransactionType.INCOME, "2024-03-22", 100, "Salary", "Monthly income"
+        )
+        expected_repr = "{\n\tType: income\n\tDate: 2024-03-22\n\tAmount: 100\n\tCategory: Salary\n\tDesc: Monthly income\n}"
+        assert (
+            repr(transaction) == expected_repr
+        ), f"Transaction representation ({repr(transaction)}) is not equal to expected representation ({expected_repr})"
+
 
 if __name__ == "__main__":
     unittest.main()
