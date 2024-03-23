@@ -1,5 +1,6 @@
 from core.app import App
 # from storage.initialization import create_initial_account
+from core.UI import MoneyTrackingUI
 
 
 def main():
@@ -12,12 +13,7 @@ def main():
 
     # Main loop of the application
     while True:
-        print("\nMoney Tracking App")
-        print("1. Add Money")
-        print("2. Read All Money")
-        print("3. Export Account")
-        print("4. Import Account")
-        print("5. Exit")
+        MoneyTrackingUI.print_money_tracking_ui_start_menu()
         choice = input("Enter your choice: ")
 
         if choice == "1":

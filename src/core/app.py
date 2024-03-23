@@ -1,7 +1,7 @@
 from .account import Account
 from storage.user_data import UserData
 from .transaction import Transaction, TransactionType
-
+from .UI import MoneyTrackingUI
 
 class App:
     # constructor
@@ -16,6 +16,7 @@ class App:
             else:
                 print("[ERRO] Failed to load existing data.")
         else:
+            MoneyTrackingUI.print_money_tracking_ui_header()
             account_name = input("Enter account name: ")
             initial_money = input("Enter initial money: ")
             self.account = Account(account_name, int(initial_money))
@@ -23,10 +24,9 @@ class App:
             UserData.create_account_data(account_name, int(initial_money))
 
     def add_money(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         date = input("Enter date (YYYY-MM-DD): ")
-
-        print("1. Income")
-        print("2. Spending")
+        MoneyTrackingUI.print_money_tracking_ui_menu_addMoney()
         type_input = input("Enter Transaction type: ")
 
         while(int(type_input) <= 0 or int(type_input) > 2):
@@ -61,6 +61,7 @@ class App:
         #     print("Account not found.")
 
     def export_account(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         # account_name = input("Enter account name: ")
         filename = input("Enter filename to export: ")
 
@@ -71,6 +72,7 @@ class App:
         #     print("Account not found.")
 
     def import_account(self):
+        MoneyTrackingUI.print_money_tracking_ui_header()
         filename = input("Enter filename to import: ")
         # account_name = input("Enter account name: ")
 
