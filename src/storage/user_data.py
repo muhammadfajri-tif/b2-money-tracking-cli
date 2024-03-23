@@ -1,7 +1,7 @@
 import os
 import csv
 from datetime import date
-from core.transaction import Transaction
+from core.transaction import Transaction, TransactionType
 
 
 class UserData:
@@ -109,3 +109,38 @@ class UserData:
                     })
         except IOError:
             print("[ERRO] Failed to update transactions to file.")
+
+
+    @staticmethod
+    def import_account_data(filename: str):
+        """Method for import/load account data from file"""
+        dir = os.getcwd()
+        file_path = os.path.join(dir, 'data', filename)
+        try:
+            with open(file_path, 'r') as csvfile:
+                # default field
+                name = ""
+                total_money = 0
+                transactions: list[Transaction] = []
+                # read csv
+                reader = csv.DictReader(csvfile)
+                # iterate and assign
+                for idx, row in enumerate(reader):
+                    # get name and initial money
+                    if idx == 0:
+                        name = row["name"]
+                        total_money = row["money"]
+                    # get transactions data
+                    if idx > 0:
+                        type = row["type"]
+                        date = row["date"]
+                        amount = int(row["amount"])
+                        category = row["category"]
+                        desc = row["desc"]
+                        transaction = Transaction(TransactionType[str(type).upper()],date, amount, category, desc)
+                        transactions.append(transaction)
+                csvfile.close()
+
+            return {"name": name, "money": total_money, "transactions": transactions}
+        except IOError:
+            print("[ERRO] Failed to import data.")

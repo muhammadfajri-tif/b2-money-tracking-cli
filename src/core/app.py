@@ -4,16 +4,17 @@ from .transaction import Transaction, TransactionType
 
 
 class App:
-    # field
-    account: Account
-
     # constructor
     def __init__(self):
         if UserData.validate_account_data():
             # validate username, if exist load
-            self.account = Account.import_account("account.csv")
-            self.account._transactions = sorted(self.account._transactions, key=lambda trx: trx.date)
-            print("[INFO] Successfully sync data to the file.")
+            loaded = UserData.import_account_data("account.csv")
+            if loaded is not None:
+                self.account = Account(loaded["name"], loaded["money"])
+                self.account._transactions = loaded["transactions"]
+                print("[INFO] Successfully sync data to the file.")
+            else:
+                print("[ERRO] Failed to load existing data.")
         else:
             account_name = input("Enter account name: ")
             initial_money = input("Enter initial money: ")
@@ -71,6 +72,10 @@ class App:
         filename = input("Enter filename to import: ")
         # account_name = input("Enter account name: ")
 
-        account = Account.import_account(filename)
-        self.account = account
-        print("Account imported successfully.")
+        loaded = UserData.import_account_data(filename)
+        if loaded is not None:
+            self.account = Account(loaded["name"], loaded["money"])
+            self.account._transactions = loaded["transactions"]
+            print("[INFO] Account imported successfully.")
+        else:
+            print("[ERRO] Failed to load existing data.")

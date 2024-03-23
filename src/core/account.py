@@ -117,32 +117,6 @@ class Account:
 
 
     @staticmethod
-    def import_account(filename: str) -> "Account":
-        """Method for import/load account data from file"""
-        account = Account("")
-        dir = os.getcwd()
-        file_path = os.path.join(dir, 'data', filename)
-        try:
-            with open(file_path, 'r') as csvfile:
-                reader = csv.DictReader(csvfile)
-                for idx, row in enumerate(reader):
-                    if idx == 0:
-                        account._name = row["name"]
-                        account._total_money = int(row["money"])
-                    if idx > 1:
-                        type = row["type"]
-                        date = row["date"]
-                        amount = int(row["amount"])
-                        category = row["category"]
-                        desc = row["desc"]
-                        transaction = Transaction(TransactionType[type],date, amount, category, desc)
-                        account.add_transaction(transaction)
-        except IOError:
-            print("[ERRO] Failed to import data.")
-        return account
-
-
-    @staticmethod
     def export_account(account: "Account", filename: str = "backup_account.csv"):
         """Method for export account data to file"""
         dir = os.getcwd()
