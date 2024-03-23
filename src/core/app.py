@@ -19,6 +19,8 @@ class App:
             account_name = input("Enter account name: ")
             initial_money = input("Enter initial money: ")
             self.account = Account(account_name, int(initial_money))
+            # create new file
+            UserData.create_account_data(account_name, int(initial_money))
 
     def add_money(self):
         date = input("Enter date (YYYY-MM-DD): ")
