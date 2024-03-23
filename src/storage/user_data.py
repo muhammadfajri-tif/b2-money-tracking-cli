@@ -113,6 +113,10 @@ class UserData:
     @staticmethod
     def import_account_data(filename: str):
         """Method for import/load account data from file"""
+        # if user didn't include extension
+        if not filename.endswith(".csv"):
+            filename += ".csv"
+
         dir = os.getcwd()
         file_path = os.path.join(dir, 'data', filename)
         try:
