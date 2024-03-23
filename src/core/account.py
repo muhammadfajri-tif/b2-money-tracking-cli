@@ -15,8 +15,6 @@ class Account:
         # creating new account
         self._name = name
         self._total_money = total_money
-        # create file
-        UserData.create_account_data(self._name, self._total_money)
 
     def get_income_list(self) -> List[Transaction]:
         """Method for get income list"""
