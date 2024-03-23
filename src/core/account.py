@@ -1,10 +1,9 @@
 import csv
 from .transaction import Transaction, TransactionType
 from typing import List
-from storage.user_data import UserData
 from utils.date_utils import parse_date, calculate_date_range
 
-class Account(UserData):
+class Account:
     # private field
     _transactions: List[Transaction] = []
     _total_money: int = 0

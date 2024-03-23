@@ -14,9 +14,13 @@ class App:
         print("2. Spending")
         type_input = int(input("Enter Transaction type: "))
 
-        while(type_input != 1 or type_input != 2):
+        while (type_input != 1) and (type_input != 2):
             print("[ERRO] Transaction type is not valid.")
             type_input = input("Enter Transaction type: ")
+            if not type_input.isalpha():
+                type_input = int(type_input)
+            else:
+                type_input = 0
 
         type = TransactionType.INCOME if type_input == 1 else TransactionType.SPENDING
 
